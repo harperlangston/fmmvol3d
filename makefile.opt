@@ -1,0 +1,59 @@
+# ----------------------------machine dependent file
+#MODE = debug
+MODE = optim
+
+FFTMODE = fftw3
+#FFTMODE = rfft
+
+# compiler and linker variable 
+INCLUDES = -I${FMM3D_DIR}
+LIBS = -fpermissive -fopenmp -lgfortran -llapack -lblas -lstdc++
+
+AR = ar
+ARFLAGS = -r
+
+CC  = gcc
+CXX = g++
+
+# -Wall -Wno-sign-compare 
+CFLAGS   = -fopenmp -W -Wno-sign-compare -Wno-unused-label -MMD ${INCLUDES} 
+CXXFLAGS = -fopenmp -W -Wno-sign-compare -Wno-unused-label -MMD ${INCLUDES} 
+ifeq ($(MODE),debug)
+	  CFLAGS   += -fopenmp -g
+	  CXXFLAGS += -fopenmp -g
+else
+#-O -DNDEBUG
+	 CFLAGS 	+= -fopenmp -O3 -DNDEBUG
+	 CXXFLAGS += -fopenmp -O3 -DNDEBUG
+endif
+
+ifeq ($(FFTMODE),fftw3)
+	  CFLAGS   += -fopenmp -DFFTW3 
+	  CXXFLAGS += -fopenmp -DFFTW3 
+endif
+
+LDFLAGS = ${LIBS}
+
+ifeq ($(FFTMODE),fftw3)
+	  LDFLAGS += -lfftw3
+else
+	  LDFLAGS +=  -lrfftw -lfftw
+endif
+	  	  	  
+MEX = mex
+
+RANLIB = ranlib
+
+# rules
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $*.cpp
+
+#------------------------------------------------------
+tilde:
+	rm -f *~
+
+clean:
+	rm -rf *~ *.d *.o *.a tt tt0 tt1
+
+tags:
+	etags *.hpp *.cpp
