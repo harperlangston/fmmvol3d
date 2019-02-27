@@ -19,8 +19,6 @@ EFMM3d::~EFMM3d()
 // ---------------------------------------------------------------------- 
 int EFmm3d::setFromOptions(map<string,string>& optionsMap)
 {
-
-  cerr << "What the fuck?" << endl; exit(0);
   //------------
   map<string,string>::iterator mapindex;
   mapindex = optionsMap.find("-" + prefix() + "maxLevel"); iA(mapindex!=optionsMap.end());
