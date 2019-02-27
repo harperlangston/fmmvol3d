@@ -1,0 +1,46 @@
+%% For particle solve and setup of points
+
+-numSrc 64000				%number of source points
+-numTrg 64000		%number of target points (where the potential needs to be evaluated)
+-kt 111                    %laplace equation, single layer, evaluating potential
+
+-fmm3d_np 2				%np=4 low accuracy, np=6 mid accuracy, np=8 high accuracy
+-fmm3d_let3d_ptsMax 120		%max number of points allowed in the leaf nodes of the quad tree
+-fmm3d_let3d_maxLevel 10	%max number of levels
+
+%% For volume solver
+-vkt 111
+-rootlevel 0
+
+-vfmm3d_np 2
+-vfmm3d_vlet3d_rhs 0 %% Not used but needed or parser
+-vfmm3d_vlet3d_balance 0
+
+-vfmm3d_lambda 1 % for modified laplacian
+-vfmm3d_rval 1
+-vfmm3d_eqnType 10
+
+-vfmm3d_vlet3d_ksrcval 4
+-vfmm3d_vlet3d_ktrgval 4
+
+-vfmm3d_vlet3d_periodic 0
+-vfmm3d_vlet3d_dirichlet 0
+
+-vfmm3d_vlet3d_maxLevel 20
+
+% options for adaptive quadrature - see dcuhre.f for rules.
+-vfmm3d_tbls_kt  111                %laplace equation, single layer, evaluating potential
+-vfmm3d_tbls_lambda 1
+-vfmm3d_tbls_np 6 					 		 		 		%np=4 low accuracy, np=6 mid accuracy, np=8 high accuracy
+-vfmm3d_tbls_ksrcval 4
+-vfmm3d_tbls_ktrgval 4
+
+-vfmm3d_tbls_dcuhre_key 0
+-vfmm3d_tbls_dcuhre_minpts 5000
+-vfmm3d_tbls_dcuhre_maxpts 50000000
+
+-vfmm3d_tbls_dcuhre_epsabs 10e-12
+-vfmm3d_tbls_dcuhre_epsrel 10e-12
+
+-vfmm3d_tbls_dcuhre_worksize 99999999
+

@@ -1,0 +1,34 @@
+-vkt 111
+-rootlevel 0
+
+-vfmm3d_np 6
+-vfmm3d_vlet3d_rhs 4
+-vfmm3d_vlet3d_balance 1
+-vfmm3d_vlet3d_adaptive 1
+
+-vfmm3d_lambda 1 % for modified laplacian
+-vfmm3d_rval 1
+-vfmm3d_eqnType 10
+
+-vfmm3d_vlet3d_ksrcval 4
+-vfmm3d_vlet3d_ktrgval 4
+
+-vfmm3d_vlet3d_periodic 0
+-vfmm3d_vlet3d_dirichlet 0
+
+-vfmm3d_vlet3d_maxLevel 20
+
+% options for adaptive quadrature - see dcuhre.f for rules.
+-vfmm3d_tbls_kt  111                %laplace equation, single layer, evaluating potential
+-vfmm3d_tbls_lambda 1
+-vfmm3d_tbls_np 6
+-vfmm3d_tbls_ksrcval 4
+-vfmm3d_tbls_ktrgval 4
+
+-vfmm3d_tbls_dcuhre_key 0
+-vfmm3d_tbls_dcuhre_minpts 5000
+-vfmm3d_tbls_dcuhre_maxpts 5000000
+-vfmm3d_tbls_dcuhre_epsabs 10e-10
+-vfmm3d_tbls_dcuhre_epsrel 10e-10
+-vfmm3d_tbls_dcuhre_worksize 99999999
+
